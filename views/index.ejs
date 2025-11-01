@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CurrencyHub - Exchange Rates</title>
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="header-left">
+            <h1>CurrencyHub</h1>
+        </div>
+        <nav class="header-center">
+            <a href="">Home</a>
+            <a href="/historical">Historical</a>
+            <a href="/about">About</a>
+        </nav>
+        <div class="header-right">
+            <div class="currency-icon" title="Live Rates">💲</div> <!-- Tooltip on hover -->
+        </div>
+    </header>
+
+    <main>
+
+        <!--- this is latest rate section --->
+
+        <h1>Latest Rate</h1>
+        <div class="cards-container">
+            <!-- Card for EUR -->
+            <% allData.forEach((items)=>{ %>
+<div class="card" id="eur-card">
+                <h3>
+                    <%= items.base %> Rates
+                </h3>
+                <p class="date" id="eur-date">Date: <%= items.date %>
+                </p>
+                <div class="rates-list" id="eur-rates">
+
+
+                    <% for(let i=0; i < 6;i++){ %>
+                        <div class="rate-item">
+                            <span class="currency">
+                                <%= Object.keys(items.rates)[i] %>
+                            </span>
+                            <span class="rate">
+                                <%= Object.values(items.rates)[i] %>
+                            </span>
+
+                        </div>
+                        <% } %>
+                            <!-- ... more as needed -->
+                </div>
+            </div>
+                <% }) %>
+            
+
+        </div>
+
+        <!--- historical is below --->
+
+       <section class="historical-section">
+    <h2>Historical Rates</h2>
+    <p>Retrieve rates for a specific date.</p>
+    <form id="historical-form" action="/historical" method="GET">  <!-- Added id for JS -->
+        <div class="date-input">
+           
+            <!-- <input type="date" id="historical-date" value="1999-01-04" min="1999-01-04" max="2023-12-31" name="historicalDate"> -->
+            <button type="submit" id="fetch-historical">More</button>
+        </div>
+    </form>
+  
+</section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 CurrencyHub. All rights reserved.</p>
+        <nav>
+            <a href="#privacy">Privacy Policy</a>
+            <a href="#terms">Terms of Service</a>
+        </nav>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
